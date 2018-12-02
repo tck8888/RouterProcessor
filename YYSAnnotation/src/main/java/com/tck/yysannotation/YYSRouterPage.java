@@ -11,8 +11,10 @@ import java.lang.annotation.Target;
  * description:
  */
 @Retention(RetentionPolicy.CLASS)
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 public @interface YYSRouterPage {
 
-    String value() default " ";
+    String[] value() ;
+
+
 }

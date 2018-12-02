@@ -11,6 +11,8 @@
             <option value="$PROJECT_DIR$/YYSAnnotation" />
             <option value="$PROJECT_DIR$/YYSAnnotationProcessor" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/commonmodule" />
+            <option value="$PROJECT_DIR$/resumemodule" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

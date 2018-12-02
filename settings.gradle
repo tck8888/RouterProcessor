@@ -1,1 +1,1 @@
-include ':app', ':YYSAnnotation', ':YYSAnnotationProcessor'
+include ':app', ':YYSAnnotation', ':YYSAnnotationProcessor', ':commonmodule', ':resumemodule'
