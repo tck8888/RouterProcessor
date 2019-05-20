@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion MAX_SDK_VERSION.toInteger()
     defaultConfig {
         applicationId "com.tck.routerdemo"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion MIN_SDK_VERSION.toInteger()
+        targetSdkVersion MAX_SDK_VERSION.toInteger()
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -25,4 +25,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    if(!TOOLS_IS_APPLICATION.toBoolean()){
+        implementation project(':tools')
+    }
 }

@@ -1,13 +1,20 @@
-apply plugin: 'com.android.application'
+if (TOOLS_IS_APPLICATION.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion MAX_SDK_VERSION.toInteger()
 
 
     defaultConfig {
-        applicationId "com.tck.tools"
-        minSdkVersion 21
-        targetSdkVersion 28
+        if (TOOLS_IS_APPLICATION.toBoolean()) {
+            applicationId "com.tck.tools"
+        }
+        minSdkVersion MIN_SDK_VERSION.toInteger()
+        targetSdkVersion MAX_SDK_VERSION.toInteger()
         versionCode 1
         versionName "1.0"
 
@@ -19,6 +26,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets{
+        main{
+            if (TOOLS_IS_APPLICATION.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }else {
+                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+            }
         }
     }
 
