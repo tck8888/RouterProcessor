@@ -2,9 +2,13 @@ package com.healthmudi.dia.annotationscompiler;
 
 import com.google.auto.service.AutoService;
 import com.healthmudi.dia.routerannotations.YRouter;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +20,7 @@ import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.tools.FileObject;
 import javax.tools.JavaFileObject;
@@ -45,7 +50,7 @@ public class YAnnotationsCompiler extends AbstractProcessor {
         Set<? extends Element> elementsAnnotatedWith = roundEnvironment.getElementsAnnotatedWith(YRouter.class);
         HashMap<String, String> stringStringHashMap = new HashMap<>();
         for (Element element : elementsAnnotatedWith) {
-            TypeElement typeElement = (TypeElement) element;
+            TypeElement typeElement = (TypeElement) element.getEnclosingElement();
             YRouter annotation = typeElement.getAnnotation(YRouter.class);
             String value = annotation.value();
 
@@ -53,6 +58,14 @@ public class YAnnotationsCompiler extends AbstractProcessor {
 
             stringStringHashMap.put(value, string);
         }
+
+        MethodSpec.Builder methodBuild = MethodSpec.methodBuilder("putActivity")
+                .addAnnotation(Override.class)
+                .addModifiers(Modifier.PUBLIC)
+                .returns(TypeName.VOID);
+
+        //TypeSpec.classBuilder()
+
 
         if (stringStringHashMap.size() > 0) {
             Writer writer = null;
@@ -87,7 +100,7 @@ public class YAnnotationsCompiler extends AbstractProcessor {
 
     @Override
     public SourceVersion getSupportedSourceVersion() {
-        return processingEnv.getSourceVersion();
+        return SourceVersion.latestSupported();
     }
 
 }
