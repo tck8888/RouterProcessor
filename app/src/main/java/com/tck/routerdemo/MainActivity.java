@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.healthmudi.dia.routerannotations.YRouter;
+
+@YRouter("main/main")
 public class MainActivity extends AppCompatActivity {
 
     @Override

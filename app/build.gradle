@@ -25,9 +25,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation project(path: ':router')
+    implementation project(':router')
+    implementation project(':RouterAnnotations')
 
     if(!TOOLS_IS_APPLICATION.toBoolean()){
         implementation project(':tools')
+    }
+
+    if(!LOGIN_IS_APPLICATION.toBoolean()){
+        implementation project(':login')
     }
 }
