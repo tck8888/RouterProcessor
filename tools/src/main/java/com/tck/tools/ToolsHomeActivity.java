@@ -2,6 +2,8 @@ package com.tck.tools;
 
 import android.os.Bundle;
 
+import java.lang.reflect.Proxy;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ToolsHomeActivity extends AppCompatActivity {
@@ -10,5 +12,11 @@ public class ToolsHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools_home);
+
+        Man man = new Man();
+        Salesman salesman = new Salesman(man);
+        salesman.applyBank();
+
+        Proxy.newProxyInstance()
     }
 }
