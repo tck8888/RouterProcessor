@@ -9,6 +9,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
     }
     buildTypes {
         release {
@@ -25,8 +32,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation project(':router')
+    implementation project(path: ':router')
     implementation project(':RouterAnnotations')
+    annotationProcessor project(':AnnotationsCompiler')
 
     if(!TOOLS_IS_APPLICATION.toBoolean()){
         implementation project(':tools')

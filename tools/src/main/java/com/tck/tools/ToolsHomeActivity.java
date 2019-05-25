@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.healthmudi.dia.routerannotations.YRouterPath;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+@YRouterPath("tools")
 public class ToolsHomeActivity extends AppCompatActivity {
 
     @Override

@@ -1,5 +1,7 @@
 package com.tck.tools;
 
+import com.healthmudi.dia.routerannotations.YRouterPath;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -9,5 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author tck
  * @version 3.5
  */
+@YRouterPath("sub")
 public class SubActivity extends AppCompatActivity {
 }
