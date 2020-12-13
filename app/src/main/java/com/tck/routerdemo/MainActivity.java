@@ -1,28 +1,24 @@
 package com.tck.routerdemo;
 
 import android.os.Bundle;
-import android.view.View;
 
-import com.healthmudi.dia.routerannotations.YRouterPath;
-import com.tck.router.YRouter;
-
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-@YRouterPath("main")
-public class MainActivity extends AppCompatActivity {
+import com.tck.trouter.annotations.TRouter;
 
+/**
+ * description:
+ *
+ * @author tck88
+ * @version v1.0.0
+ * @date 2020/12/13 20:45
+ */
+@TRouter(path = "MainActivity")
+public class MainActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                YRouter.getInstance()
-                        .action("login")
-                        .with(MainActivity.this)
-                        .navigation();
-            }
-        });
     }
 }

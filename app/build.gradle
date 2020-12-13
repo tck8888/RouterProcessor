@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+
 }
 
 android {
@@ -17,10 +17,10 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+               arguments = [moduleName: project.getName(), packageNameForAPT: packageNameForAPT]
+                //arguments = [moduleName: project.getName()]
             }
         }
-
     }
     buildTypes {
         release {
@@ -33,9 +33,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+
     buildFeatures {
         viewBinding true
     }
@@ -43,23 +41,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation project(path: ':router')
-    implementation project(':RouterAnnotations')
-    annotationProcessor project(':AnnotationsCompiler')
 
-    if(!TOOLS_IS_APPLICATION.toBoolean()){
-        implementation project(':lib_tools')
-    }
-
-    if(!LOGIN_IS_APPLICATION.toBoolean()){
-        implementation project(':lib_login')
-    }
+    api project(':trouter_annotations')
+    annotationProcessor project(':trouter_compiler')
 }

@@ -48,6 +48,9 @@ android {
         jvmTarget = '1.8'
     }
 
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -62,6 +65,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation project(path: ':router')
-    implementation project(':RouterAnnotations')
-    annotationProcessor project(':AnnotationsCompiler')
+
+
+    implementation project(':lib_base')
 }

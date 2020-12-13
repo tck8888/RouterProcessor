@@ -64,7 +64,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    annotationProcessor project(path: ':AnnotationsCompiler')
-    implementation project(path: ':router')
+
     implementation project(path: ':RouterAnnotations')
+
+    implementation project(':lib_base')
 }
