@@ -3,19 +3,25 @@ plugins {
     id 'kotlin-android'
 }
 
+
 android {
     compileSdkVersion MAX_SDK.toInteger()
 
+
     defaultConfig {
+        if (TOOLS_IS_APPLICATION.toBoolean()) {
+            applicationId "com.tck.tools"
+        }
         minSdkVersion MIN_SDK.toInteger()
         targetSdkVersion MAX_SDK.toInteger()
         versionCode VERSION_CODE.toInteger()
         versionName VERSION_NAME
 
-        consumerProguardFiles 'consumer-rules.pro'
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -25,6 +31,15 @@ android {
         }
     }
 
+    sourceSets{
+        main{
+            if (TOOLS_IS_APPLICATION.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }else {
+                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+            }
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -32,9 +47,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
+
 }
 
 dependencies {
@@ -48,5 +61,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation project(path: ':RouterAnnotations')
+    implementation project(path: ':router')
+    implementation project(':RouterAnnotations')
+    annotationProcessor project(':AnnotationsCompiler')
 }

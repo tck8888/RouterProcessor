@@ -1,1 +1,6 @@
-include ':app', ':tools', ':router', ':login', ':RouterAnnotations', ':AnnotationsCompiler'
+include ':lib_doctor'
+include ':lib_hospital'
+include ':lib_base'
+include ':lib_tools'
+include ':lib_login'
+include ':app', ':router',  ':RouterAnnotations', ':AnnotationsCompiler'
